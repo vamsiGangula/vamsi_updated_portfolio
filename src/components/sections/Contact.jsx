@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Send, CheckCircle, MapPin, Phone, Mail } from 'lucide-react';
-
+import { useState, useEffect } from "react";
+import { Send, CheckCircle, MapPin, Phone, Mail } from "lucide-react";
+import emailjs from "@emailjs/browser";
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,7 +24,7 @@ const Contact = () => {
       { threshold: 0.2 }
     );
 
-    const section = document.getElementById('contact');
+    const section = document.getElementById("contact");
     if (section) observer.observe(section);
 
     return () => {
@@ -34,11 +34,11 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -46,17 +46,17 @@ const Contact = () => {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = "Email is invalid";
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = "Message is required";
     }
 
     setErrors(newErrors);
@@ -68,38 +68,54 @@ const Contact = () => {
 
     if (validate()) {
       setIsSubmitting(true);
-
-      // Simulating form submission
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        setFormData({ name: '', email: '', subject: '', message: '' });
-
-        // Reset submission state after some time
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 5000);
-      }, 1500);
+      formData.title = formData.subject;
+      emailjs
+        .send(
+          "service_qggyhbv", // get from EmailJS dashboard
+          "template_02wikq8", // get from EmailJS dashboard
+          formData, // this object contains {name, email, subject, message}
+          "xABn38_cKmaYbgoZX" // get from EmailJS dashboard
+        )
+        .then(
+          () => {
+            setIsSubmitting(false);
+            setIsSubmitted(true);
+            setFormData({ name: "", email: "", subject: "", message: "" });
+            setTimeout(() => setIsSubmitted(false), 5000);
+          },
+          (error) => {
+            setIsSubmitting(false);
+            alert("Failed to send message, please try again later.");
+            console.error(error);
+          }
+        );
     }
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <section
+      id="contact"
+      className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+    >
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get In <span className="text-blue-600 dark:text-blue-400">Touch</span>
+            Get In{" "}
+            <span className="text-blue-600 dark:text-blue-400">Touch</span>
           </h2>
           <div className="h-1 w-20 bg-blue-600 dark:bg-blue-400 mx-auto rounded-full"></div>
           <p className="mt-4 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            Have a project in mind or want to chat? I'd love to hear from you. Send me a message and I'll get back to you as soon as possible.
+            Have a project in mind or want to chat? I'd love to hear from you.
+            Send me a message and I'll get back to you as soon as possible.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div
             className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transition-all duration-1000 ease-out ${
-              isVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-8'
+              isVisible
+                ? "opacity-100 transform translate-x-0"
+                : "opacity-0 transform -translate-x-8"
             }`}
           >
             <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
@@ -109,7 +125,8 @@ const Contact = () => {
                 <CheckCircle size={64} className="text-green-500 mb-4" />
                 <h4 className="text-xl font-bold mb-2">Message Sent!</h4>
                 <p className="text-gray-700 dark:text-gray-300 text-center">
-                  Thank you for reaching out. I'll get back to you as soon as possible.
+                  Thank you for reaching out. I'll get back to you as soon as
+                  possible.
                 </p>
               </div>
             ) : (
@@ -128,10 +145,14 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                      errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                      errors.name
+                        ? "border-red-500"
+                        : "border-gray-300 dark:border-gray-600"
                     }`}
                   />
-                  {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                  )}
                 </div>
 
                 <div className="mb-4">
@@ -148,10 +169,14 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                      errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                      errors.email
+                        ? "border-red-500"
+                        : "border-gray-300 dark:border-gray-600"
                     }`}
                   />
-                  {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                  )}
                 </div>
 
                 <div className="mb-4">
@@ -185,10 +210,16 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                      errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                      errors.message
+                        ? "border-red-500"
+                        : "border-gray-300 dark:border-gray-600"
                     }`}
                   ></textarea>
-                  {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-red-500">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 <button
@@ -214,7 +245,9 @@ const Contact = () => {
 
           <div
             className={`transition-all duration-1000 ease-out delay-300 ${
-              isVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-8'
+              isVisible
+                ? "opacity-100 transform translate-x-0"
+                : "opacity-0 transform translate-x-8"
             }`}
           >
             <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
