@@ -276,7 +276,7 @@ const Contact = () => {
                     </svg>
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/vamsi-gangula-5786b822b/"
+                    href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"

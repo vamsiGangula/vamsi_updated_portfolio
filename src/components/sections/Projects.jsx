@@ -13,7 +13,7 @@ const projects = [
     title: "E-Commerce Platform",
     projectName: "Almond House Sweets",
     description:
-      "A fully responsive e-commerce platform built with React, Redux, and Stripe for payments. Features include product filtering, user authentication, and a shopping cart.",
+      "A fully responsive e-commerce platform built with React, Redux, Razorpay for payments. Features include product filtering, user authentication, and a shopping cart.",
     image:
       "https://almondhouse.com/cdn/shop/files/Almond_House_July_20247440.jpg?v=1723201171&width=700",
     tags: [
@@ -22,7 +22,6 @@ const projects = [
       "Node.js",
       "MongoDB",
       "PostgreSQL",
-      "Stripe",
       "Tailwind CSS",
       "Material UI",
     ],
@@ -73,7 +72,7 @@ const projects = [
     description:
       "An analytics dashboard for social media platforms. Visualizes engagement metrics and provides insights for content strategy.",
     image: "https://samsaradiamonds.com/static/images/store-banner-bg.png",
-    tags: ["Vue.js", "D3.js", "Express.js", "OAuth", "Node.js"],
+    tags: [ "Express.js", "OAuth", "Node.js"],
     demoUrl: "https://samsaradiamonds.com/",
     githubUrl: "https://github.com/vamsiGangula",
   },
@@ -86,8 +85,8 @@ const projects = [
     image:
       "https://truejoy.ai/images/png/bannerimg.png",
     tags: [
-      "Vue.js",
-      "D3.js",
+     "Aws",
+     "Azure",
       "Express.js",
       "OAuth",
       "Node.js",

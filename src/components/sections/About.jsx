@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Code, Briefcase, GraduationCap } from "lucide-react";
-
+import { Code, Briefcase, GraduationCap, FileUser } from "lucide-react";
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -70,6 +69,12 @@ const About = () => {
               enjoy playing cricket, volleyball, and exploring new strategy
               games like chess.
             </p>
+            <div>
+              <span onClick={() => window.open("https://drive.google.com/file/d/1LsxFeB2gtUXTpG9EHtKAd3__gf_gF8_3/view?usp=sharing", "_blank")} className="flex items-center justify-end mt-4 text-blue-600 dark:text-blue-400 cursor-pointer">
+                <FileUser  className="mr-2 w-8 h-8"/>
+                Resume
+              </span>
+            </div>
           </div>
 
           <div
@@ -92,7 +97,9 @@ const About = () => {
               description="Designing and optimizing RESTful APIs and database queries with PostgreSQL, MongoDB, and MySQL to improve data analytics and application efficiency by up to 40%."
             />
             <ExperienceCard
-              icon={<GraduationCap className="text-blue-600 dark:text-blue-400" />}
+              icon={
+                <GraduationCap className="text-blue-600 dark:text-blue-400" />
+              }
               title="B.Tech"
               duration="2018 - 2021"
               description="Graduated with a strong academic record at Lingaya’s Institute of Management & Technology."

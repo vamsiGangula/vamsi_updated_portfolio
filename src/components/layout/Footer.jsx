@@ -18,7 +18,7 @@ const Footer = () => {
 
           <div className="flex space-x-4">
             <SocialLink href="https://github.com/vamsiGangula" icon={<Github size={20} />} label="GitHub" />
-            <SocialLink href="https://www.linkedin.com/in/vamsi-gangula-5786b822b/" icon={<Linkedin size={20} />} label="LinkedIn" />
+            <SocialLink href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" icon={<Linkedin size={20} />} label="LinkedIn" />
             <SocialLink href="mailto:vamsigangula9133@gmail.com" icon={<Mail size={20} />} label="Email" />
           </div>
         </div>
@@ -28,7 +28,7 @@ const Footer = () => {
             © {currentYear} Vamsi Portfolio. All rights reserved.
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
-            Designed and built with React, TypeScript, and Tailwind CSS.
+            Designed and built with React and Tailwind CSS.
           </p>
         </div>
       </div>

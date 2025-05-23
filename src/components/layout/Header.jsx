@@ -88,7 +88,7 @@ const Header = ({ scrollY }) => {
           </button>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Buttons */}
         <div className="flex items-center md:hidden">
           <button
             onClick={toggleTheme}
@@ -107,25 +107,43 @@ const Header = ({ scrollY }) => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <nav
-        className={`md:hidden absolute top-full left-0 right-0 bg-white dark:bg-gray-900 shadow-lg transition-transform duration-300 ease-in-out ${
-          mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
-        }`}
-      >
-        <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={handleNavClick}
-              className="py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700">
+          <nav className="flex flex-col px-4 py-4 space-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={handleNavClick}
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium border-b border-gray-100 dark:border-gray-800 pb-2"
+              >
+                {link.name}
+              </a>
+            ))}
+            <button
+              onClick={() => {
+                toggleTheme();
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center justify-center mt-3 p-3 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              {link.name}
-            </a>
-          ))}
+              {theme === 'dark' ? (
+                <>
+                  <Sun size={20} className="mr-2" />
+                  Light Mode
+                </>
+              ) : (
+                <>
+                  <Moon size={20} className="mr-2" />
+                  Dark Mode
+                </>
+              )}
+            </button>
+          </nav>
         </div>
-      </nav>
+      )}
     </header>
   );
 };
