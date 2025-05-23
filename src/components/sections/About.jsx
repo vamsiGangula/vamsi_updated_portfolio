@@ -70,7 +70,7 @@ const About = () => {
               games like chess.
             </p>
             <div>
-              <span onClick={() => window.open("https://drive.google.com/file/d/1LsxFeB2gtUXTpG9EHtKAd3__gf_gF8_3/view?usp=sharing", "_blank")} className="flex items-center justify-end mt-4 text-blue-600 dark:text-blue-400 cursor-pointer">
+              <span onClick={() => window.open("https://pwdse.blob.core.windows.net/pwdse-files/resume/final_resume_vamsi%20(1).pdf??sp=racwdl&st=2024-08-27T05:41:36Z&se=2026-08-27T13:41:36Z&spr=https&sv=2022-11-02&sr=c&sig=66ZYpyLP0bsa41FtPdD7nzAu%2BT8DAqnIFRdEcjacIO0%3D", "_blank")} className="flex items-center justify-end mt-4 text-blue-600 dark:text-blue-400 cursor-pointer">
                 <FileUser  className="mr-2 w-8 h-8"/>
                 Resume
               </span>
